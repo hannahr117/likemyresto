@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Owners index{% endblock %}
+
+{% block body %}
+    <h1>Owners index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for owner in owners %}
+            <tr>
+                <td>{{ owner.id }}</td>
+                <td>{{ owner.firstName }}</td>
+                <td>{{ owner.lastName }}</td>
+                <td>
+                    <a href="{{ path('app_owners_show', {'id': owner.id}) }}">show</a>
+                    <a href="{{ path('app_owners_edit', {'id': owner.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_owners_new') }}">Create new</a>
+{% endblock %}
